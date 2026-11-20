@@ -1,8 +1,10 @@
 import { ref } from "vue";
 import { useStudio } from "../../../shared/useStudio";
+import { usePaletteSession } from "../../palette/model/usePaletteSession";
 import { cropFromPoints, normalizeCrop } from "../lib/geometry";
 export function useCrop() {
   const { doc, invalidate } = useStudio();
+  const palette = usePaletteSession();
   const draft = ref(doc.crop);
   const start = ref<{ x: number; y: number } | null>(null);
   function point(e: PointerEvent) {
@@ -13,6 +15,8 @@ export function useCrop() {
     };
   }
   function down(e: PointerEvent) {
+    // 吸色激活时让吸色层接管，不启动裁剪框选
+    if (palette.eyedropper.value) return;
     start.value = point(e);
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   }

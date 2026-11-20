@@ -12,7 +12,11 @@ export function createDocument(): StudioDocument {
       invert: false,
       color: true,
       background: "#101216",
+      indexed: true,
+      maxColors: 16,
+      strategy: "salient",
     },
+    locks: [],
     grid: null,
     revision: 0,
   };

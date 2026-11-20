@@ -8,7 +8,10 @@ const e = useExport();
     <div>
       <span class="eyebrow">READY TO SHARE</span>
       <h3>带走你的字符作品</h3>
-      <small>文本保留完整字符布局，PNG 保留当前配色。</small>
+      <small
+        >文本保留完整字符布局；PNG 与预览共用同一色板，索引模式导出 PLTE
+        索引色（含背景与透明项）。</small
+      >
     </div>
     <div class="export-actions">
       <button class="secondary" :disabled="!e.ready()" @click="e.copy">

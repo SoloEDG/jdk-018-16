@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { Crop, RotateCcw } from "lucide-vue-next";
 import { useCrop } from "../model/useCrop";
 import CropImage from "./CropImage.vue";
+import EyedropperLayer from "../../palette/ui/EyedropperLayer.vue";
 const c = useCrop();
 const selection = computed(() => (c.start.value ? c.draft.value : c.doc.crop));
 </script>
@@ -18,6 +19,7 @@ const selection = computed(() => (c.start.value ? c.draft.value : c.doc.crop));
       @pointercancel="c.start.value = null"
     >
       <CropImage :asset="c.doc.asset" :crop="selection" />
+      <EyedropperLayer />
     </div>
     <div class="row hint">
       <span>拖动框选转换区域</span
